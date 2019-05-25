@@ -1,27 +1,33 @@
 package academy.learnprogramming;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+@Slf4j
+@Component
 public class MessageGeneratorImpl implements MessageGenerator{
 
     // == constants ==
-    private static final Logger log = LoggerFactory.getLogger(MessageGeneratorImpl.class);
+    //private static final Logger log = LoggerFactory.getLogger(MessageGeneratorImpl.class);
 
     // == fields ==
-    @Autowired
-    private Game game;
+    private final Game game;
     //private int guessCount = 10;
+
+    //== constructor ==
+    public MessageGeneratorImpl(Game game) {
+        this.game = game;
+    }
 
     // == init ==
     @PostConstruct
     public void init() {
 
-        log.debug("the number is {}", game.getGuessCount());
+        log.debug("the Number is {}", game.getGuessCount());
     }
+
 
     // == public methods ==
     @Override
